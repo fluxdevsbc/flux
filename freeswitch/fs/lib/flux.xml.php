@@ -61,7 +61,7 @@ function load_acl($logger, $db, $config) {
 	}
 	
 	// For gateways
-/*	$query = "SELECT * FROM gateways WHERE status=0";
+	$query = "SELECT * FROM gateways WHERE status=0";
 	$logger->log ( "Sofia Gateway Query : " . $query );
 	$sp_gw = $db->run ( $query );
 	$logger->log ( $sp_gw );
@@ -83,7 +83,7 @@ function load_acl($logger, $db, $config) {
 				}
 			}
 		}
-	}*/
+	}
 
 	// For opensips
 	if ($config ['opensips'] == '0') {
