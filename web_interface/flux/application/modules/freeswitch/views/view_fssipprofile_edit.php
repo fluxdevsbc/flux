@@ -65,7 +65,7 @@ $(document).ready(function() {
 		  formflag = false;
       }
       if(formflag){
-      	alert('Request to reload the sip profile to reflect the applied changes in Freeswitch.');
+      	alert('Request to reload the sip profile to reflect the applied changes in Flux SBC.');
 		$('#myForm1').submit();
 	  }
 }
@@ -112,7 +112,7 @@ function cancel(){
       jQuery('#params_value').removeClass('borderred');
 }
 function reload_port(h){
-	var sip_port = confirm("Are you sure about the applied config changed? This will affect how the calls will be accepted and handled by Freeswitch. Please note: If the switch is currently having live calls, the reload will not reflect the applied changes in Freeswitch.");
+	var sip_port = confirm("Are you sure about the applied config changed? This will affect how the calls will be accepted and handled by Flux SBC. Please note: If the switch is currently having live calls, the reload will not reflect the applied changes in Flux SBC.");
 		if(sip_port == true){
 			window.location.href = h;
 		}
