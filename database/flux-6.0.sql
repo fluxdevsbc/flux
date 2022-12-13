@@ -147,7 +147,7 @@ CREATE TABLE `accounts` (
 
 LOCK TABLES `accounts` WRITE;
 /*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
-INSERT INTO `accounts` VALUES (1,'admin',0,0,0,'',0,2,'2016-07-25 00:00:01',0.00000,0,1.00000,'8xbJv9wZmjA','Administrator','Admin','Your Company','ADDRESS','','','','',28,'','','your@email.com','',1,139,1,0,'',-1,27,0,0,0.00000,0,'0',0,0,0,'','0000-00-00 00:00:00','','2016-07-26 11:26:24','2046-07-25 11:26:24',60000,0.00000,0,0,'1',0,0,0,'1000-01-01 00:00:00',0,0,1,0,'','',NULL),(2,'4727985745',0,1,0,'',0,2,'2016-07-25 11:26:24',0.00000,0,677.00000,'dOxAtqeO7E6A-wGlILTl-RLbYiySAwss','default','customer','FLUX','adress','','','','',28,'','','yourcustomer@test.com','yourcustomer@test.com',0,16,1,0,'',0,49,0,0,0.00000,0,'',0,1,0,'','0000-00-00 00:00:00','4727985745','2016-07-26 11:26:24','2046-07-25 11:26:24',3652,0.00000,0,0,'1',0,0,0,'1000-01-01 00:00:00',0,0,1,0,'','',''),(3,'3673942894',0,1,0,'',0,2,'2016-07-26 15:15:20',0.00000,0,0.00000,'lzq1UjaoM44Ed2D07iQY8RLbYiySAwss','default','provider','FLUX','adress','','','','',28,'','','yourprovider@test.com','',0,16,0,0,'',3,49,0,0,0.00000,0,'',0,1,0,'','0000-00-00 00:00:00','320736','0000-00-00 00:00:00','2026-07-26 15:12:18',0,0.00000,0,0,'',0,0,0,'1000-01-01 00:00:00',0,0,1,0,'','','');
+INSERT INTO `accounts` VALUES (1,'admin',0,0,0,'',0,2,'2016-07-25 00:00:01',0.00000,0,1.00000,'8xbJv9wZmjA','Administrator','Admin','Your Company','ADDRESS','','','','',28,'','','your@email.com','',1,16,1,0,'',-1,78,0,0,0.00000,0,'0',0,0,0,'','0000-00-00 00:00:00','','2016-07-26 11:26:24','2046-07-25 11:26:24',60000,0.00000,0,0,'1',0,0,0,'1000-01-01 00:00:00',0,0,1,0,'','',NULL),(2,'4727985745',0,1,0,'',0,2,'2016-07-25 11:26:24',0.00000,0,677.00000,'dOxAtqeO7E6A-wGlILTl-RLbYiySAwss','default','customer','FLUX','adress','','','','',28,'','','yourcustomer@test.com','yourcustomer@test.com',0,16,1,0,'',0,78,0,0,0.00000,0,'',0,1,0,'','0000-00-00 00:00:00','4727985745','2016-07-26 11:26:24','2046-07-25 11:26:24',3652,0.00000,0,0,'1',0,0,0,'1000-01-01 00:00:00',0,0,1,0,'','',''),(3,'3673942894',0,1,0,'',0,2,'2016-07-26 15:15:20',0.00000,0,0.00000,'lzq1UjaoM44Ed2D07iQY8RLbYiySAwss','default','provider','FLUX','adress','','','','',28,'','','yourprovider@test.com','',0,16,0,0,'',3,78,0,0,0.00000,0,'',0,1,0,'','0000-00-00 00:00:00','320736','0000-00-00 00:00:00','2026-07-26 15:12:18',0,0.00000,0,0,'',0,0,0,'1000-01-01 00:00:00',0,0,1,0,'','','');
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1001,7 +1001,7 @@ CREATE TABLE `invoice_conf` (
 
 LOCK TABLES `invoice_conf` WRITE;
 /*!40000 ALTER TABLE `invoice_conf` DISABLE KEYS */;
-INSERT INTO `invoice_conf` VALUES (1,1,'Flux Telecom','R. Joaquim Pedro Soares, 560','Novo Hamburgo','Rio Grande do Sul','28','93510320','08001002500','','suportel@flux.net.br','flux.net.br','INV_',1,'','','',1,1,0,'7',1,'ABC 435 1XX 8XX 3XX','flux.net.br','Flux Telecom','Flux Telecom',0);
+INSERT INTO `invoice_conf` VALUES (1,1,'Flux Telecom','R. Joaquim Pedro Soares, 560','Novo Hamburgo','Rio Grande do Sul','28','93510320','08001002500','08001002500','suporte@flux.net.br','flux.net.br','INV_',1,'logo.png','favicon.ico','Invoice Flux',1,1,0,'7',1,'ABC 435 1XX 8XX 3XX','flux.net.br','Flux Telecom - Unindo pessoas e negócios','',0);
 /*!40000 ALTER TABLE `invoice_conf` ENABLE KEYS */;
 UNLOCK TABLES;
 
