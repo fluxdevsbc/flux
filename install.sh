@@ -183,15 +183,15 @@ install_prerequisties ()
                 systemctl stop httpd
                 systemctl disable httpd
                 yum update -y
-                yum install -y wget curl git bind-utils ntpdate systemd net-tools whois sendmail sendmail-cf mlocate vim
+                yum install -y wget curl git bind-utils ntpdate systemd net-tools whois sendmail sendmail-cf mlocate vim chrony
         else if [ $DIST = "DEBIAN" ]; then
                 systemctl stop apache2
                 systemctl disable apache2
                 apt update
                 apt install -y sudo wget curl git dnsutils ntpdate systemd net-tools whois sendmail-bin sensible-mda mlocate vim
         else if [ $DIST = "DEBIAN10" ]; then
-                sudo apt-get update
-                sudo apt-get install -y sudo wget curl git dnsutils ntpdate systemd net-tools whois sendmail-bin sensible-mda mlocate vim imagemagick
+                apt-get update
+                apt-get install -y sudo wget curl git dnsutils ntpdate systemd net-tools whois sendmail-bin sensible-mda mlocate vim imagemagick chrony
         fi
         fi
         fi
@@ -293,7 +293,7 @@ install_mysql ()
                 debconf-set-selections <<< "mysql-community-server mysql-community-server/root-pass password ${MYSQL_ROOT_PASSWORD}"
                 debconf-set-selections <<< "mysql-community-server mysql-community-server/re-root-pass password ${MYSQL_ROOT_PASSWORD}"
                 debconf-set-selections <<< "mysql-community-server mysql-server/default-auth-override select Use Legacy Authentication Method (Retain MySQL 5.x Compatibility)"
-                DEBIAN_FRONTEND=noninteractive apt install mysql-server
+                DEBIAN_FRONTEND=noninteractive apt -y install mysql-server
                 cd /opt/flux/misc/
                 tar -xzvf odbc.tar.gz
                 cp -rf odbc/libmyodbc8* /usr/lib/x86_64-linux-gnu/odbc/.
@@ -308,18 +308,18 @@ install_mysql ()
                 mysql -uroot -p${MYSQL_ROOT_TEMP} --connect-expired-password -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';FLUSH PRIVILEGES;"
         else if [ "$DIST" = "DEBIAN10" ]; then
                 apt install gnupg -y
-                sudo apt install dirmngr --install-recommends
+                sudo apt -y install dirmngr --install-recommends
                 apt-get install software-properties-common -y
                 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 467B942D3A79BD29
                 wget https://repo.mysql.com/mysql-apt-config_0.8.22-1_all.deb
                 sudo dpkg -i mysql-apt-config_0.8.22-1_all.deb
                 apt update -y
                 #apt -y install unixodbc unixodbc-bin
-		        apt-get install unixodbc unixodbc-dev
+		        apt-get -y install unixodbc unixodbc-dev
                 debconf-set-selections <<< "mysql-community-server mysql-community-server/root-pass password ${MYSQL_ROOT_PASSWORD}"
                 debconf-set-selections <<< "mysql-community-server mysql-community-server/re-root-pass password ${MYSQL_ROOT_PASSWORD}"
                 debconf-set-selections <<< "mysql-community-server mysql-server/default-auth-override select Use Legacy Authentication Method (Retain MySQL 5.x Compatibility)"
-                DEBIAN_FRONTEND=noninteractive apt install mysql-server
+                DEBIAN_FRONTEND=noninteractive apt -y install mysql-server
                 cd /opt/flux/misc/
                 tar -xzvf odbc.tar.gz
 		        mkdir -p /usr/lib/x86_64-linux-gnu/odbc/.
@@ -613,6 +613,44 @@ install_database ()
         mysql -uroot -p${MYSQL_ROOT_PASSWORD} flux < ${FLUX_SOURCE_DIR}/database/flux-6.0.1.sql
 }
 
+#Install SSL for security
+
+install_ssl()
+{
+                read -n 1 -p "Do you want to install and configure ssl cert ? (y/n) "
+                if [ "$REPLY"   = "y" ]; then
+                        if [ -f /etc/debian_version ] ; then
+							DIST="DEBIAN"
+							python3-certbot-nginx python3-certbot
+							certbot -m suporte@flux.net.br --nginx -d ${FLUX_HOST_DOMAIN_NAME} --agree-tos -n --no-redirect certonly -q
+							sed "s@ssl_certificate[ \t]*/etc/nginx/ssl/nginx.crt;@ssl_certificate /etc/letsencrypt/live/${FLUX_HOST_DOMAIN_NAME}/fullchain.pem;@g" -i /etc/nginx/conf.d/flux.conf
+							sed "s@ssl_certificate_key[ \t]*/etc/nginx/ssl/nginx.key;@ssl_certificate_key /etc/letsencrypt/live/${FLUX_HOST_DOMAIN_NAME}/privkey.pem;@g" -i /etc/nginx/conf.d/flux.conf
+							sed -i "s#server_name _#server_name ${FLUX_HOST_DOMAIN_NAME}#g" /etc/nginx/conf.d/flux.conf
+                        elif  [ ${DIST} = "DEBIAN10" ]; then
+                           python3-certbot-nginx python3-certbot
+                            certbot -m suporte@flux.net.br --nginx -d ${FLUX_HOST_DOMAIN_NAME} --agree-tos -n --no-redirect certonly -q
+                            sed "s@ssl_certificate[ \t]*/etc/nginx/ssl/nginx.crt;@ssl_certificate /etc/letsencrypt/live/${FLUX_HOST_DOMAIN_NAME}/fullchain.pem;@g" -i /etc/nginx/conf.d/flux.conf
+                            sed "s@ssl_certificate_key[ \t]*/etc/nginx/ssl/nginx.key;@ssl_certificate_key /etc/letsencrypt/live/${FLUX_HOST_DOMAIN_NAME}/privkey.pem;@g" -i /etc/nginx/conf.d/flux.conf
+                            sed -i "s#server_name _#server_name ${FLUX_HOST_DOMAIN_NAME}#g" /etc/nginx/conf.d/flux.conf
+                            
+                        elif [ -f /etc/redhat-release ] ; then
+                                DIST="CENTOS"
+						python3-certbot-nginx python3-certbot
+						certbot -m suporte@flux.net.br --nginx -d ${FLUX_HOST_DOMAIN_NAME} --agree-tos -n --no-redirect certonly -q
+						sed "s@ssl_certificate[ \t]*/etc/nginx/ssl/nginx.crt;@ssl_certificate /etc/letsencrypt/live/${FLUX_HOST_DOMAIN_NAME}/fullchain.pem;@g" -i /etc/nginx/conf.d/flux.conf
+						sed "s@ssl_certificate_key[ \t]*/etc/nginx/ssl/nginx.key;@ssl_certificate_key /etc/letsencrypt/live/${FLUX_HOST_DOMAIN_NAME}/privkey.pem;@g" -i /etc/nginx/conf.d/flux.conf
+						sed -i "s#server_name _#server_name ${FLUX_HOST_DOMAIN_NAME}#g" /etc/nginx/conf.d/flux.conf        
+                        fi
+                        echo "################################################################"
+                        systemctl restart nginx
+                        systemctl enable nginx
+                        echo "################################################################"
+                        echo "SSL Cert Install completed"
+                        else
+                        echo ""
+                        echo "SSL Cert installation is aborted !"
+                fi   
+}
 
 #Remove all downloaded and temp files from server
 clean_server ()
@@ -641,6 +679,7 @@ start_installation ()
         install_database
         normalize_freeswitch
         normalize_flux
+        install_ssl
         clean_server
         clear
         echo "******************************************************************************************"
