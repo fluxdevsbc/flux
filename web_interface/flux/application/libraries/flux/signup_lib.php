@@ -164,12 +164,12 @@ class Signup_lib {
 				'accountid' => $accountinfo['id'],
 				'dir_params' => json_encode(array(
 					"password"=> $this->CI->common->decode ( $accountinfo ['password'] ),
-					'vm-enabled' => "true",
+					'vm-enabled' => "false",
 					"vm-password"=> $random_password,
 					"vm-mailto"=> (isset($accountinfo['email']))?$accountinfo['email']:'',
-					"vm-attach-file"=>"true",
-					"vm-keep-local-after-email"=>"true",
-					"vm-email-all-messages"=>"true"
+					"vm-attach-file"=>"false",
+					"vm-keep-local-after-email"=>"false",
+					"vm-email-all-messages"=>"false"
 				)),
 				"dir_vars"=>json_encode(array(
 					'effective_caller_id_name' => $accountinfo ['number'],
