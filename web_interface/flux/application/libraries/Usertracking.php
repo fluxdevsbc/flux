@@ -148,7 +148,7 @@ class Usertracking
     $this->CI->load->library('user_agent');
     $this->CI->load->library('session');
 
-    if ($this->CI->input->server('REQUEST_URI') == '/login/get_language_text/' || strstr($this->CI->agent->referrer(),"asset") || $this->CI->input->server('REQUEST_URI') == '/' || $this->CI->input->server('REMOTE_ADDR') == '::1')
+    if ($this->CI->input->server('REQUEST_URI') == '/login/get_language_text/' || strstr($this->CI->agent->referrer(),"dashboard") || $this->CI->input->server('REQUEST_URI') == 'crons/index' || strstr($this->CI->agent->referrer(),"asset") || $this->CI->input->server('REQUEST_URI') == '/' || $this->CI->input->server('REMOTE_ADDR') == '::1' || strstr($this->CI->input->server('REQUEST_BODY'),"button_name"))
     {
       return;
     }
