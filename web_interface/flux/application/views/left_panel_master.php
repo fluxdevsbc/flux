@@ -62,15 +62,13 @@
 	<?php if(isset($addon_detail_flag) && $addon_detail_flag){?>
 	<ul class="sidemenu">
 		<?php 
-		if ($this->uri->segment(3) == 'Community'){
+		if ($this->uri->segment(3) == 'Plugins'){
 		?>
-		<li class="active"><a href="<?php echo base_url();?>addons/addons_list/Community">Community</a></li>
-		<li><a href="<?php echo base_url();?>addons/addons_list/Enterprise">Enterprise</a></li>
+		<li class="active"><a href="<?php echo base_url();?>addons/addons_list/plugins">Plugins</a></li>
 		<?php
 		} else {
 		?>
-	<li><a href="<?php echo base_url();?>addons/addons_list/Community">Community</a></li>
-	<li class="active"><a href="<?php echo base_url();?>addons/addons_list/Enterprise">Enterprise</a></li>
+	<li><a href="<?php echo base_url();?>addons/addons_list/plugins">Plugins</a></li>
 		<?php
 		}
 		?>
@@ -80,8 +78,7 @@
 
 	<?php if(isset($addon_flag) && $addon_flag){?>
 	  <ul class="sidemenu">
-		<li><a href="<?php echo base_url();?>addons/addons_list/Community">Community</a></li>
-	    <li><a href="<?php echo base_url();?>addons/addons_list/Enterprise">Enterprise</a></li>
+		<li><a href="<?php echo base_url();?>addons/addons_list/plugins">Plugins</a></li>
 	  </ul>
   	<?php } ?>
              <?php 

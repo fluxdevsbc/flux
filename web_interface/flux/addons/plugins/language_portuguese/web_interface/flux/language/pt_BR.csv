@@ -1146,7 +1146,7 @@ Less Or Equal Than,Menor ou igual a
 Set To,Definido como
 Increase By,Aumentar em
 Decrease By,Diminuir em
-Community,Comunidade
+plugins,Comunidade
 You must either select a field from your file OR provide a default value for the following fields:,Você deve selecionar um campo de seu arquivo OU fornecer um valor padrão para os seguintes campos:
 Note : Records with duplicate account number and email will be ignored.,Nota: Registros com número de conta e e-mail duplicados serão ignorados.
 Map CSV to Customers,Mapeie CSV para clientes
