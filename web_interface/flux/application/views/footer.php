@@ -223,7 +223,7 @@ jQuery(function($) {
     if($this->session->userdata['logintype'] == 2 || $this->session->userdata['logintype'] == -1 || $this->session->userdata['logintype'] == 1 || $this->session->userdata['logintype'] == 0 ){
      $user_footer = $this->session->userdata('user_footer');  
      if(isset($user_footer) && $user_footer != '') {  
-      if ($user_footer == 'Flux Telecom. Ltd All Rights Reserved.'){
+      if ($user_footer == 'Flux SBC - Unindo pessoas e negócios.'){
         $user_footer = '';
          } ?>
        <div  class="pull-left col-3 text-left">
@@ -232,8 +232,7 @@ jQuery(function($) {
             <strong><?=gettext($user_footer); ?></strong>
           </span>
       </a><br> -->
-     <strong> <span class="text-warning"><?php echo gettext('Flux SBC - Unindo pessoas e negócios<br>
-      Powered by Flux Telecom.<br>')?> </span></strong>
+   Copyright @ <?php echo date("Y"); ?> <a class="text-warning" href="http://flux.net.br" target="_blank"> <?php echo gettext("Flux Telecom.<br>")?></a><?php echo gettext("All Rights Reserved.")?>
       </div>
       <?php } ?>
       <!-- // end FLUXENT-3818 -->
@@ -243,7 +242,6 @@ jQuery(function($) {
   	   		 <div class="social-media">
   	   		  <a target="_blank" href="https://www.facebook.com/fluxtec/" title="Facebook"> <i class="facebook fa fa-facebook"></i></a>
   	   		  <a target="_blank" href="https://in.linkedin.com/company/fluxtelecom" title="Linkedin"> <i class="linkin fa fa-linkedin"></i></a>
-  	   		  <a target="_blank" href="https://twitter.com/flux_official" title="Twitter"> <i class="twitter fa fa-twitter "></i></a>
   	   		 
   	   		</div>
 		 </div>
@@ -254,8 +252,8 @@ jQuery(function($) {
 		if ($user_footer != '') { 
 		
 			?>
-     <div class="col-md-4 py-2 px-2 text-md-left text-light"><?=$user_footer ?></div>
-     <div class="col-md-4 py-2 px-2 text-md-left text-light"></div>
+           <div class="col-md-5 py-2 px-2 text-md-left text-light">Copyright @ <?php echo date("Y"); ?> <a class="text-warning" href="http://flux.net.br" target="_blank"> <?php echo gettext("Flux Telecom.")?></a>. <?php echo gettext("All Rights Reserved.")?>
+          <div class="col-md-3 py-2 px-2 text-md-left text-light"></div>
     <?} else {  ?>
       <div class="col-md-5 py-2 px-2 text-md-left text-light">Copyright @ <?php echo date("Y"); ?> <a class="text-warning" href="http://flux.net.br" target="_blank"> <?php echo gettext("Flux Telecom.")?></a>. <?php echo gettext("All Rights Reserved.")?>
      <div class="col-md-3 py-2 px-2 text-md-left text-light"></div>
@@ -302,9 +300,7 @@ if (isset($selected_locale) && $value['locale'] == $selected_locale) {
 } ?> 
         </select>
 
-
-
-<div class="col-md-12 float-right pt-4 pr-0 text-light text-md-right version_size"><?php echo gettext("Version")?>  <?php echo common_model::$global_config['system_config']['version'] .' '.gettext('Community') ;?>
+<div class="col-md-12 float-right pt-4 pr-0 text-light text-md-right version_size"><?php echo gettext("Version")?>  <?php echo common_model::$global_config['system_config']['version'] .' ';?>
 <?php
 
 ?>
