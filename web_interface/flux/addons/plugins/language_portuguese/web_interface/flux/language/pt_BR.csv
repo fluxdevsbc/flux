@@ -269,7 +269,7 @@ Is Purchased?,É comprado?
 Iso,Iso
 Iso3,Iso3
 IVR Count,IVR Count
-Languages,línguas
+Languages,Idiomas
 Last Execution Date,Data da Última Execução
 Last Modified Date,Data da Última Modificação
 Last Name,Sobrenome
@@ -292,7 +292,7 @@ Localizations,Localizações
 Log out,Sair
 Log Path,Caminho de registro
 Logo,Logotipo
-Low balance Alert?,Alerta de saldo baixo?
+Low balance Alert?,Alertar saldo baixo?
 Mail Log,Registro de e-mail
 Manually,Manualmente
 Markup,Markup
@@ -422,7 +422,7 @@ Sandbox Id,Id da sandbox
 Sandbox Key,Chave da Sandbox
 Sandbox Name,Nome da Sandbox
 Sandbox Url,Sandbox Url
-Save,Salve 
+Save,Salvar
 Schedule Reports,Relatórios de programação
 Search,Procurar
 Select File,Selecione o arquivo
@@ -464,7 +464,7 @@ Templates,Modelos
 Term. Cost,Prazo. Custo
 Term. Destination,Prazo. Destino
 Term. Prefix,Prazo. Prefixo
-Term. Trunk,Prazo. Tronco
+Term. Trunk,Prazo. Gateway
 Termination Rates,Taxas de rescisão
 Third Party,Terceiro
 This Month,Este mês
@@ -484,7 +484,7 @@ Total Minutes,Minutos Totais
 Transaction ID,ID de transação
 Translations,Traduções
 Translations Language,Idioma das traduções
-Trunk,Tronco
+Trunk,Gateway
 Trunks,Roupa de baixo
 Type,Modelo
 Unpaid,Não pago
@@ -554,7 +554,7 @@ If No Answer,Se não houver resposta
 New Rate Group Name,Novo nome do grupo de taxas
 Duplicate Rate Group Information,Informações duplicadas do grupo de taxas
 Import Origination Rates,Taxas de origem de importação
-Force Trunk,Forçar tronco
+Force Trunk,Forçar Gateway
 Please select atleast one record to dele,Selecione pelo menos um registro para deletar
 Import Ratedeck,Importar verificação nominal
 Optional Information,informação opcional
@@ -568,13 +568,13 @@ Retry-Seconds,Tentar novamente em segundos
 Register-Proxy,Register-Proxy
 Channel,Canal
 Failover GW Name,Nome de GW de failover
-Create Trunk,Criar tronco
+Create Trunk,Criar Gateway
 Import Termination Rates,Taxas de rescisão de importação
 Call Timeout (Sec.),Tempo limite da chamada (seg.)
-Trunk List,Lista de Troncos
+Trunk List,Lista de Gateways
 Reset,Redefinir
 Create SIP Profile,Criar Perfil SIP
-Create Freeswitch Server,Criar servidor Freeswitch
+Create Freeswitch Server,Criar servidor FluxSBC
 Live Calls,Chamadas ao vivo
 Term Cost,Custo do Termo
 Term Destination,Destino do Termo
@@ -636,7 +636,7 @@ Active,Ativo
 Inactive,Inativo
 Black List,Lista negra
 White List,Lista Branca
-Freeswitch Server Information,Informações do servidor Freeswitch
+Freeswitch Server Information,Informações do servidor FluxSBC
 Currencies,Moedas
 Edit Currency,Editar Moeda
 Is Distributor,É distribuidor
@@ -805,18 +805,18 @@ Routing Prefix already exist in system.,O prefixo de roteamento já existe no si
 Rate Group Updated Successfully!,Grupo de avaliação atualizado com sucesso!
 Rate Group Added Successfully!,Grupo de classificação adicionado com sucesso!
 Duplicate Rate Group Added Successfully!,Grupo de taxas duplicado adicionado com sucesso!
-Routing Prefix (Enterprise),Prefixo de roteamento (empresa)
-Priority (Enterprise),Prioridade (empresa)
-Percentage (WIP) (Enterprise),Porcentagem (WIP) (Enterprise)
+Routing Prefix (Enterprise),Prefixo de roteamento
+Priority (Enterprise),Prioridade
+Percentage (WIP) (Enterprise),Porcentagem
 LCR,LCR
 Percentage,Percentagem
 Tax removed successfully!,Imposto removido com sucesso!
 Tax added successfully!,Imposto adicionado com sucesso!
 Tax updated successfully!,Imposto atualizado com sucesso!
 Charges List,Lista de Encargos
-Trunk Updated Successfully!,Tronco atualizado com sucesso!
-Trunk Added Successfully!,Tronco adicionado com sucesso!
-Trunk removed successfully!,Tronco removido com sucesso!
+Trunk Updated Successfully!,Gateway atualizado com sucesso!
+Trunk Added Successfully!,Gateway adicionado com sucesso!
+Trunk removed successfully!,Gateway removido com sucesso!
 setting updated successfully!,configuração atualizada com sucesso!
 Template Updated Successfully!,Modelo atualizado com sucesso!
 Template Added Successfully!,Modelo adicionado com sucesso!
@@ -911,8 +911,8 @@ Please Try Again!,"Por favor, tente novamente!"
 Email BroadCast Successfully!,Transmissão por e-mail com sucesso!
 No Record Found!,Nenhum Registro Encontrado!
 Email Address Not Found!,Endereço de email não encontrado!
-Edit Freeswitch SIP Devices,Editar dispositivos Freeswitch SIP
-Create Freeswitch SIP Devices,Criar dispositivos Freeswitch SIP
+Edit Freeswitch SIP Devices,Editar dispositivos SIP
+Create Freeswitch SIP Devices,Criar dispositivos SIP
 Gateway Updated Successfully!,Gateway atualizado com sucesso!
 Gateways already exist in system.,Gateways já existem no sistema.
 Gateway name must not have any space.,O nome do gateway não deve ter nenhum espaço.
@@ -929,9 +929,9 @@ SIP Setting Updated Successfully!,Configuração SIP atualizada com sucesso!
 SIP Setting Removed Successfully!,Configuração SIP removida com sucesso!
 SIP Profile Removed Successfully!,Perfil SIP removido com sucesso!
 Host Already Exist in System.,O host já existe no sistema.
-Freeswitch Server Updated Successfully!,Servidor Freeswitch atualizado com sucesso!
-Freeswitch Server Added Successfully!,Servidor Freeswitch adicionado com sucesso!
-Freeswitch Server Removed Successfully!,Servidor Freeswitch removido com sucesso!
+Freeswitch Server Updated Successfully!,Servidor FluxSBC atualizado com sucesso!
+Freeswitch Server Added Successfully!,Servidor FluxSBC adicionado com sucesso!
+Freeswitch Server Removed Successfully!,Servidor FluxSBC removido com sucesso!
 Invoice updated successfully!,Fatura atualizada com sucesso!
 Invoice payment done successfully!,O pagamento da fatura foi feito com sucesso!
 Account Not Found.,Conta não encontrada.
@@ -1038,7 +1038,7 @@ Invoice Start From,Fatura a partir de
 Edit Gateway,Editar Gateway
 Number Of Default Rows,Número de linhas padrão
 Mobile Dialer,Discador móvel
-Trunk Count,Contagem de troncos
+Trunk Count,Contagem de Gateways
 Welcome File,Arquivo de Boas Vindas
 Local Call Timeout (Sec.),Tempo limite de chamada local (seg.)
 Rate check for DID,Verificar taxa para DID
@@ -1707,7 +1707,7 @@ Value is Required.,Valor é requerido.
 Value,Valor
 Update Setting,Configuração de atualização
 Add Setting,Adicionar configuração
-Edit Freeswitch Server,Editar Servidor Freeswitch
+Edit Freeswitch Server,Editar Servidor FluxSBC
 CUT,CORTAR
 ADD,ADICIONAR
 Edit Localization,Editar localização
