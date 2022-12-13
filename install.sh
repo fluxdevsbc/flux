@@ -205,7 +205,7 @@ install_prerequisties ()
 get_flux_source ()
 {
         cd /opt
-        git clone -b V6.0 https://github.com/fluxtelecom/flux/
+        git clone https://github.com/fluxtelecom/flux/
 	
 }
 
