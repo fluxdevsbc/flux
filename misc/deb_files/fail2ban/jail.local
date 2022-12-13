@@ -1,0 +1,81 @@
+[DEFAULT]
+# Ban hosts for one hour:
+bantime = -1
+ignoreip = 127.0.0.0/8 
+# Override /etc/fail2ban/jail.d/00-firewalld.conf:
+banaction = iptables-multiport
+
+[ssh]
+enabled  = true
+action   = iptables-allports[name=sshd, protocol=all]
+           sendmail-whois[name=Fail2ban-SSH-{INTF},sender={NOTISENDEREMAIL} ,dest="{NOTIEMAIL}"]
+maxretry = 5
+findtime = 7200
+bantime  = 86400
+[ssh-ddos]
+enabled = true
+maxretry = 3
+bantime = 10000000
+action   = iptables-allports[name=ssh-ddos, port="ssh", protocol=tcp]
+          sendmail-whois[name=Fail2ban-SSH-DDOS-{INTF},sender={NOTISENDEREMAIL} ,dest="{NOTIEMAIL}"]
+[freeswitch-udp]
+enabled  = true
+port     = 5060
+protocol = all
+filter   = sip-auth-failure
+logpath = /var/log/freeswitch/freeswitch.log
+action   = iptables-multiport[name=freeswitch-udp, port="%(port)s", protocol=udp]
+           sendmail-whois[name=Fail2ban-FS-{INTF},sender={NOTISENDEREMAIL} ,dest="{NOTIEMAIL}"]
+maxretry = 5
+findtime = 600
+bantime  = 3600
+#          sendmail-whois[name=FreeSwitch, dest=root, sender=fail2ban@example.org] #no smtp server installed
+sendmail-whois[name=Fail2ban-FS-{INTF},sender={NOTISENDEREMAIL} ,dest="{NOTIEMAIL}"]
+[freeswitch-tcp]
+enabled  = true
+port     = 5060
+protocol = all
+filter   = sip-auth-failure
+logpath = /var/log/freeswitch/freeswitch.log
+action   = iptables-allports[name=freeswitch-tcp, port="%(port)s", protocol=tcp]
+           sendmail-whois[name=Fail2ban-FS-{INTF},sender={NOTISENDEREMAIL} ,dest="{NOTIEMAIL}"]
+maxretry = 5
+findtime = 600
+bantime  = 3600
+#          sendmail-whois[name=FreeSwitch, dest=root, sender=fail2ban@example.org] #no smtp server installed
+
+[freeswitch-ip-tcp]
+enabled  = false
+port     = 5060
+protocol = all
+filter   = freeswitch-ip
+logpath  = /var/log/freeswitch/freeswitch.log
+action   = iptables-allports[name=freeswitch-ip-tcp, port="%(port)s", protocol=tcp]
+           sendmail-whois[name=Fail2ban-FS-{INTF},sender={NOTISENDEREMAIL} ,dest="{NOTIEMAIL}"]
+maxretry = 1
+findtime = 30
+bantime  = 86400
+
+[freeswitch-ip-udp]
+enabled  = false
+port     = 5060
+protocol = all
+filter   = freeswitch-ip
+logpath = /var/log/freeswitch/freeswitch.log
+action   = iptables-allports[name=freeswitch-ip-udp, port="%(port)s", protocol=udp]
+           sendmail-whois[name=Fail2ban-FS-{INTF},sender={NOTISENDEREMAIL} ,dest="{NOTIEMAIL}"]
+maxretry = 1
+findtime = 30
+bantime  = 86400
+
+[sip-auth-challenge]
+enabled  = false
+port     = 5060
+protocol = all
+filter   = sip-auth-challenge
+logpath = /var/log/freeswitch/freeswitch.log
+action   = iptables-allports[name=sip-auth-challenge, port="%(port)s", protocol=all]
+           sendmail-whois[name=Fail2ban-FS-{INTF},sender=fail2ban@astpptelephony.com ,dest="{NOTIEMAIL}"]
+maxretry = 50
+findtime = 30
+bantime  = 7200
