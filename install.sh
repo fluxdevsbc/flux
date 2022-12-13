@@ -613,50 +613,12 @@ install_database ()
         mysql -uroot -p${MYSQL_ROOT_PASSWORD} flux < ${FLUX_SOURCE_DIR}/database/flux-6.0.1.sql
 }
 
-#Install SSL for security
-
-install_ssl()
-{
-                read -n 1 -p "Do you want to install and configure ssl cert ? (y/n) "
-                if [ "$REPLY"   = "y" ]; then
-                        if [ -f /etc/debian_version ] ; then
-							DIST="DEBIAN"
-							python3-certbot-nginx python3-certbot
-							certbot -m suporte@flux.net.br --nginx -d ${FLUX_HOST_DOMAIN_NAME} --agree-tos -n --no-redirect certonly -q
-							sed "s@ssl_certificate[ \t]*/etc/nginx/ssl/nginx.crt;@ssl_certificate /etc/letsencrypt/live/${FLUX_HOST_DOMAIN_NAME}/fullchain.pem;@g" -i /etc/nginx/conf.d/flux.conf
-							sed "s@ssl_certificate_key[ \t]*/etc/nginx/ssl/nginx.key;@ssl_certificate_key /etc/letsencrypt/live/${FLUX_HOST_DOMAIN_NAME}/privkey.pem;@g" -i /etc/nginx/conf.d/flux.conf
-							sed -i "s#server_name _#server_name ${FLUX_HOST_DOMAIN_NAME}#g" /etc/nginx/conf.d/flux.conf
-                        elif  [ ${DIST} = "DEBIAN10" ]; then
-                           python3-certbot-nginx python3-certbot
-                            certbot -m suporte@flux.net.br --nginx -d ${FLUX_HOST_DOMAIN_NAME} --agree-tos -n --no-redirect certonly -q
-                            sed "s@ssl_certificate[ \t]*/etc/nginx/ssl/nginx.crt;@ssl_certificate /etc/letsencrypt/live/${FLUX_HOST_DOMAIN_NAME}/fullchain.pem;@g" -i /etc/nginx/conf.d/flux.conf
-                            sed "s@ssl_certificate_key[ \t]*/etc/nginx/ssl/nginx.key;@ssl_certificate_key /etc/letsencrypt/live/${FLUX_HOST_DOMAIN_NAME}/privkey.pem;@g" -i /etc/nginx/conf.d/flux.conf
-                            sed -i "s#server_name _#server_name ${FLUX_HOST_DOMAIN_NAME}#g" /etc/nginx/conf.d/flux.conf
-                            
-                        elif [ -f /etc/redhat-release ] ; then
-                                DIST="CENTOS"
-						python3-certbot-nginx python3-certbot
-						certbot -m suporte@flux.net.br --nginx -d ${FLUX_HOST_DOMAIN_NAME} --agree-tos -n --no-redirect certonly -q
-						sed "s@ssl_certificate[ \t]*/etc/nginx/ssl/nginx.crt;@ssl_certificate /etc/letsencrypt/live/${FLUX_HOST_DOMAIN_NAME}/fullchain.pem;@g" -i /etc/nginx/conf.d/flux.conf
-						sed "s@ssl_certificate_key[ \t]*/etc/nginx/ssl/nginx.key;@ssl_certificate_key /etc/letsencrypt/live/${FLUX_HOST_DOMAIN_NAME}/privkey.pem;@g" -i /etc/nginx/conf.d/flux.conf
-						sed -i "s#server_name _#server_name ${FLUX_HOST_DOMAIN_NAME}#g" /etc/nginx/conf.d/flux.conf        
-                        fi
-                        echo "################################################################"
-                        systemctl restart nginx
-                        systemctl enable nginx
-                        echo "################################################################"
-                        echo "SSL Cert Install completed"
-                        else
-                        echo ""
-                        echo "SSL Cert installation is aborted !"
-                fi   
-}
 
 #Remove all downloaded and temp files from server
 clean_server ()
 {
         cd /usr/src
-        rm -rf GNU-AGPLv3.6.txt install.sh mysql80-community-release-el7-1.noarch.rpm
+        rm -rf GNU-AGPLv5.0.txt install.sh mysql-apt-config_0.8.22-1_all.deb ioncube ioncube_loaders_lin_x86-64.tar.gz mysql80-community-release-el7-1.noarch.rpm
         echo "FS restarting...!"
         systemctl restart freeswitch
         echo "FS restarted...!"
@@ -679,7 +641,6 @@ start_installation ()
         install_database
         normalize_freeswitch
         normalize_flux
-        install_ssl
         clean_server
         clear
         echo "******************************************************************************************"
