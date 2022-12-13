@@ -217,13 +217,14 @@ jQuery(function($) {
    </div>
    </div>
 </footer>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y72F0B6ZN1"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZNNB03YB7R"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-Y72F0B6ZN1');
+
+  gtag('config', 'G-ZNNB03YB7R');
 </script>
 </body>
 </body>
