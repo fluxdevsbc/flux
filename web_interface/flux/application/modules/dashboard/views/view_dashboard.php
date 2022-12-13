@@ -898,7 +898,6 @@ function create_formatted_date($startdate,$enddate,$timezone,$timevisibly)
                         </a>
                     </div>
             
-            <!-- Kinjal Issue Number 671 Low balance report, Trunk activity report -->
             <?php   
                     $accountinfo = $this->session->userdata("accountinfo");
                     if($accountinfo['type'] == -1 || $accountinfo['type'] == 2){
@@ -1100,113 +1099,7 @@ function create_formatted_date($startdate,$enddate,$timezone,$timevisibly)
             {
             ?> 
             <div class="row event-info-box">
-                <div class="col-lg-6 pr-lg-2">
-                    <?php //FLUXENT-990 sanket start ?>
-                    <div class="card mb-3 dashboard-block events-block">
-                    <?php //FLUXENT-990 sanket end ?>    
-                            <h3 class="text-dark p-3">
-                                <i class="fa fa-calendar text-primary fa-fw"></i> <?php echo gettext("What's New"); ?>                              
-                            </h3>
-                        <div class="card-body">
-                            <div id="call-count"></div>
-                            <?php
-                            $feed_url = "#";
-                            if($feed_url!='')
-                            {
-
-                            // make request
-                            $ch = curl_init();
-                            // Disable SSL verification
-                            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                            // Will return the response, if false it print the response
-                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                            // Set the url
-                            curl_setopt($ch, CURLOPT_URL, $feed_url);
-                            // Execute
-                            $output = curl_exec($ch);
-                            $xml_snippet = simplexml_load_string( $output,null, LIBXML_NOCDATA);
-                            $json_convert = json_encode( $xml_snippet );
-                            $json = json_decode( $json_convert );
-                            curl_close($ch);
-                            $events = $json->channel->item;
-                            }                     
-                            ?>
-                            <div class="rss-widget">
-                                <?php
-                                if(count($events) > 0)
-                                {
-                                ?>
-                                <ul class="p-0">
-                                    <?php
-                                    foreach($events as $row)
-                                    {
-                                    date_default_timezone_set('Asia/Kolkata');
-
-                                    $d1 = new DateTime($row->visDate);
-                                    $d2 = new DateTime('now');
-                                    $status = $row->status;
-
-                                    if($status == 1)
-                                    {
-                                    //date info
-                                    $startdate = $row->startDate;
-                                    $enddate = $row->endDate; 
-                                    $timezone = $row->timezone;
-                                    $timevisibly = $row->timevisibly;
-                                    $category = $row->category;                                   
-
-                                    if($d1 > $d2 ){
-                                    ?>
-                                    <li class="event-info">
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <?php
-                                                if($row->imageurl != ''): ?>
-                                                <a class="rsswidget" href="<?php echo $row->link; ?>" target="_blank"><img class="img-responsive" src="<?php echo $row->imageurl; ?>" /></a>
-                                                <?php else: ?>
-                                                <a class="rsswidget" href="<?php echo $row->link; ?>" target="_blank"><i class="fa fa-calendar"></i></a>    
-                                                <?php endif; ?>    
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h5><a class="rsswidget_link" title="<?php echo $row->title; ?>" href="<?php echo $row->link; ?>" target="_blank"><?php echo $row->title; ?></a></h5>
-                                                <div class="description" title="<?php echo strip_tags(str_replace("<p></p>","", $row->description)); ?>"><?php echo mb_strimwidth(str_replace("<p></p>","", $row->description),"0","30", "..."); ?></div>                
-                                                </div>
-                                            <div class="col-md-4">
-                                                <?php
-                                                if($category == 2) { ?>
-                                                <div class="date-info">
-                                                    <span class="font-12"><?php echo create_formatted_date($startdate,$enddate,$timezone,$timevisibly); ?></span>
-                                                </div>
-                                                <?php } ?>
-                                                <span class="badge badge-primary float-left mt-1"><?php if($row->eventtype == 0 ){ echo "Offline Event"; } else { echo "Online Event"; }  ?></span>
-                                            </div>
-                                        </div>
-                                        
-                                    </li>
-                                    <?php } } } ?>
-                                </ul>
-                                <?php
-                                }
-                                ?>
-                            </div>
-                            <!-- <div id='not_data' class='col-md-12 not_data' style ='display:none'></div> -->
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" target="_blank">Forum <i class="fa fa-external-link" aria-hidden="true"></i></a>
-                            |
-
-                            <a href="#" target="_blank">Report an Issue <i class="fa fa-external-link" aria-hidden="true"></i></a>
-                            |
-
-                            <a href="#" target="_blank">Professional Services <i class="fa fa-external-link" aria-hidden="true"></i></a>
-                            |
-
-                            <a href="#" target="_blank">Donate Now <i class="fa fa-external-link" aria-hidden="true"></i></span></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 pl-lg-2">
+                <div class="col-lg-12">
                 <div class="row">    
                 <div class="col-lg-6 pr-lg-2">
                     <div class="card mb-3 dashboard-block">
@@ -1305,7 +1198,6 @@ function create_formatted_date($startdate,$enddate,$timezone,$timevisibly)
                 </div>
                 </div>
                 </div>      
-            
             </div>
             <div class="row event-info-box">
                 <div class="col-lg-12">
