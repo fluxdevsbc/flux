@@ -56,6 +56,8 @@ dofile(script_path.."scripts/flux.xml.lua");
 -- Include custom file to load custom function
 dofile(script_path.."lib/flux.custom.lua");
 
+dofile(script_path.."lib/flux.facilities.lua");
+
 -- Load addons files
 dirname = script_path..'lib/addons/'
 f = io.popen('ls ' .. dirname)
