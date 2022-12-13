@@ -407,6 +407,7 @@ install_flux ()
         mkdir -p ${FLUXDIR}
         mkdir -p ${FLUXLOGDIR}
         mkdir -p ${FLUXEXECDIR}
+        mkdir -p /var/www
         mkdir -p ${WWWDIR}
         cp -rf ${FLUX_SOURCE_DIR}/config/flux-config.conf ${FLUXDIR}flux-config.conf
         cp -rf ${FLUX_SOURCE_DIR}/config/flux.lua ${FLUXDIR}flux.lua
@@ -494,7 +495,7 @@ normalize_flux ()
                 systemctl restart php7.3-fpm
                 CRONPATH='/var/spool/cron/crontabs/flux'
         fi
-        echo "# To call all crons   
+                echo "# To call all crons   
                 * * * * * cd ${FLUX_SOURCE_DIR}/web_interface/flux/cron/ && php cron.php crons
                 " > $CRONPATH
                 chmod 600 $CRONPATH
@@ -502,9 +503,9 @@ normalize_flux ()
         touch /var/log/flux/flux.log
         touch /var/log/flux/flux_email.log
         chmod -Rf 755 $FLUX_SOURCE_DIR
-	chmod -Rf 777 /opt/flux/
-	chmod -Rf 777 /opt/flux/*
-	chmod -Rf 777 /opt/flux
+	    chmod -Rf 777 /opt/flux/
+	    chmod -Rf 777 /opt/flux/*
+	    chmod -Rf 777 /opt/flux
         chmod 777 /var/log/flux/flux.log
         chmod 777 /var/log/flux/flux_email.log
         sed -i "s#dbpass = <PASSSWORD>#dbpass = ${FLUXUSER_MYSQL_PASSWORD}#g" ${FLUXDIR}flux-config.conf
